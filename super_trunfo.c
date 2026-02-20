@@ -1,23 +1,22 @@
 /*
 ===========================================================
 Projeto: Super Trunfo de Países
-Nível: Novato (Versão Aprimorada)
+Nível: Intermediário
 
 Descrição:
-Este programa cadastra duas cartas do jogo Super Trunfo
-e calcula:
+Este programa cadastra duas cartas do jogo Super Trunfo,
+mantém a exibição dos dados básicos e calcula:
 
-- Densidade Populacional
-- PIB per capita
+- Densidade Populacional (habitantes por km²)
+- PIB per capita (reais por habitante)
 
 Não utiliza estruturas de repetição ou decisão.
 ===========================================================
 */
 
-#include <stdio.h>
 #include <string.h>
 
-int main() {
+int main(void) {
 
     /* ============================
        DECLARAÇÃO DAS VARIÁVEIS
@@ -29,11 +28,10 @@ int main() {
     char nomeCidade1[50];
     int populacao1;
     float area1;
-    float pib1;
-    int pontosTuristicos1;
-
+    float pib1; // em bilhões de reais
     float densidade1;
     float pibPerCapita1;
+    int pontosTuristicos1;
 
     // Carta 2
     char estado2;
@@ -41,11 +39,10 @@ int main() {
     char nomeCidade2[50];
     int populacao2;
     float area2;
-    float pib2;
-    int pontosTuristicos2;
-
+    float pib2; // em bilhões de reais
     float densidade2;
     float pibPerCapita2;
+    int pontosTuristicos2;
 
     /* ============================
        ENTRADA DE DADOS - CARTA 1
@@ -57,13 +54,13 @@ int main() {
     scanf(" %c", &estado1);
 
     printf("Codigo da Carta (ex: A01): ");
-    scanf("%s", codigo1);
+    scanf("%3s", codigo1);
 
     getchar();
 
     printf("Nome da Cidade: ");
-    fgets(nomeCidade1, 50, stdin);
-    nomeCidade1[strcspn(nomeCidade1, "\n")] = 0;
+    fgets(nomeCidade1, sizeof(nomeCidade1), stdin);
+    nomeCidade1[strcspn(nomeCidade1, "\n")] = '\0';
 
     printf("Populacao: ");
     scanf("%d", &populacao1);
@@ -82,8 +79,7 @@ int main() {
        ============================ */
 
     densidade1 = populacao1 / area1;
-
-    pibPerCapita1 = (pib1 * 1000000000) / populacao1;
+    pibPerCapita1 = (pib1 * 1000000000.0f) / populacao1;
 
     /* ============================
        ENTRADA DE DADOS - CARTA 2
@@ -95,13 +91,13 @@ int main() {
     scanf(" %c", &estado2);
 
     printf("Codigo da Carta (ex: B02): ");
-    scanf("%s", codigo2);
+    scanf("%3s", codigo2);
 
     getchar();
 
     printf("Nome da Cidade: ");
-    fgets(nomeCidade2, 50, stdin);
-    nomeCidade2[strcspn(nomeCidade2, "\n")] = 0;
+    fgets(nomeCidade2, sizeof(nomeCidade2), stdin);
+    nomeCidade2[strcspn(nomeCidade2, "\n")] = '\0';
 
     printf("Populacao: ");
     scanf("%d", &populacao2);
@@ -120,14 +116,14 @@ int main() {
        ============================ */
 
     densidade2 = populacao2 / area2;
-
-    pibPerCapita2 = (pib2 * 1000000000) / populacao2;
+    pibPerCapita2 = (pib2 * 1000000000.0f) / populacao2;
 
     /* ============================
        EXIBIÇÃO DOS RESULTADOS
        ============================ */
 
     printf("\n\n===== CARTAS CADASTRADAS =====\n");
+    printf("\n===== CARTAS CADASTRADAS =====\n");
 
     printf("\nCarta 1:\n");
     printf("Estado: %c\n", estado1);
@@ -138,7 +134,7 @@ int main() {
     printf("PIB: %.2f bilhoes de reais\n", pib1);
     printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos1);
     printf("Densidade Populacional: %.2f hab/km²\n", densidade1);
-    printf("PIB per capita: %.2f reais\n", pibPerCapita1);
+    printf("PIB per Capita: %.2f reais\n", pibPerCapita1);
 
     printf("\nCarta 2:\n");
     printf("Estado: %c\n", estado2);
@@ -149,7 +145,7 @@ int main() {
     printf("PIB: %.2f bilhoes de reais\n", pib2);
     printf("Numero de Pontos Turisticos: %d\n", pontosTuristicos2);
     printf("Densidade Populacional: %.2f hab/km²\n", densidade2);
-    printf("PIB per capita: %.2f reais\n", pibPerCapita2);
+    printf("PIB per Capita: %.2f reais\n", pibPerCapita2);
 
     return 0;
 }
